@@ -1,6 +1,7 @@
 import random
 from typing import List
 
+
 class Randomizer:
     def get_random_num(self, max: int) -> int:
         return random.randint(0, max)
