@@ -10,4 +10,4 @@ class Randomizer:
 
     def get_list_names(self, names: List[str]) -> List[str]:
         random.shuffle(names)
-        return names;
+        return names
