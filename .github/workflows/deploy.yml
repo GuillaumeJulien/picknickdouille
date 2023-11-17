@@ -11,10 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - run: echo "First workflow was a success"
+      - uses: actions/checkout@v2
+      - name: Login to Docker
+        run: docker login rg.fr-par.scw.cloud/picnicdouille -u nologin -p ${{ secrets.SCWTOKEN }}
+      - name: Build API Container
+        run: |
+          cd backend
+          docker build -f Dockerfile --tag rg.fr-par.scw.cloud/picnicdouille/picnicdouille_app:${{ github.sha }} .
+      - name: Push Container in registry
+        run: docker push rg.fr-par.scw.cloud/picnicdouille/picnicdouille_app:${{ github.sha }}
+
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
-      - run: echo "First workflow was a failure"
+      - run: echo "CPT MICHEL"
 
