@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Login to Docker
-        run: docker login rg.fr-par.scw.cloud/picnicdouille -u nologin -p ${{ secrets.SCWTOKEN }}
+        run: docker login rg.fr-par.scw.cloud/picnicdouille -u nologin -p '${{ secrets.SCWTOKEN }}'
       - name: Build API Container
         run: |
           cd backend
